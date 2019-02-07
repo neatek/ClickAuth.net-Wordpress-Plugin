@@ -1,5 +1,3 @@
-# ClickLogin Wordpress Plugin Social Autentification
-
 === Neatek - ClickLogin Social Network Authorization ===
 Contributors: neatek
 Donate link: https://paypal.me/neatek
