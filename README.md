@@ -1,5 +1,7 @@
 # ClickLogin Wordpress Plugin Social Autentification
 
+[![HitCount](http://hits.dwyl.io/neatek/clicklogin-wordpress-plugin-social-authentication.svg)](http://hits.dwyl.io/neatek/clicklogin-wordpress-plugin-social-authentication)
+
 ## Neatek ClickLogin Social Network Authorization
 - Contributors: neatek
 - Donate link: https://paypal.me/neatek
