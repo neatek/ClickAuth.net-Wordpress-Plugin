@@ -2,14 +2,23 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 if(!defined("NEATEK_CLICKLOGIN")) { header( 'Location: /' ); die(); }
 function neatek_clicklogin_get_token() {
-	return neatek_file_get_contents('https://api.clicklogin.ru/?action=service_addtoken?format=json&action=service_addtoken&domain='.neatek_clicklogin_get_domain());
+	$post_data = array (
+	    "domain" => neatek_clicklogin_get_domain()
+	);
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, 'https://api.clicklogin.ru/api/addtoken');
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+	$output = curl_exec($ch);
+	curl_close($ch);
+	return $output;
 }
 function neatek_file_get_contents($url) {
 	$data = wp_remote_get($url);
 	if(!empty($data)) {
 		return $data['body'];
 	}
-
 	return "{\"success\":false}";
 }
 function neatek_show_me_pre($str) {
@@ -22,9 +31,9 @@ function neatek_clicklogin_set_token($token = '') {
 		$apianswer = neatek_clicklogin_get_token();
 		if(!empty($apianswer)) {
 			$json = json_decode($apianswer,true);
-			if(isset($json['success'])) {
-				if($json['success'] === true) {
-					$token = $json['token'];
+			if(isset($json['error'])) {
+				if($json['error'] === false) {
+					$token = $json['data']['token'];
 				}
 			}
 			unset($json);
