@@ -6,7 +6,7 @@ function neatek_clicklogin_get_token() {
 		die('Install `curl` extension for PHP!');
 	}
 	$post_data = array (
-	    "domain" => neatek_clicklogin_get_domain()
+	    "domain" => site_url( '/', 'https' )
 	);
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, 'https://api.clicklogin.ru/api/addtoken');
@@ -50,10 +50,10 @@ function neatek_clicklogin_set_token($token = '') {
 	return (bool) true;
 }
 function neatek_clicklogin_get_domain() {
-	// $home = home_url();
-	// $ex = explode('/', $home);
-	// return (string) str_replace('/','',$ex[2]);
-	return site_url( '/', 'https' );
+	$home = home_url();
+	$ex = explode('/', $home);
+	return (string) str_replace('/','',$ex[2]);
+	// return site_url( '/', 'https' );
 }
 function neatek_clicklogin_token() {
 	$token = get_option( 'click_login_token', '' );
