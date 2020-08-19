@@ -2,6 +2,9 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 if(!defined("NEATEK_CLICKLOGIN")) { header( 'Location: /' ); die(); }
 function neatek_clicklogin_get_token() {
+	if(!function_exists('curl_init')) {
+		die('Install `curl` extension for PHP!');
+	}
 	$post_data = array (
 	    "domain" => neatek_clicklogin_get_domain()
 	);
@@ -32,7 +35,7 @@ function neatek_clicklogin_set_token($token = '') {
 		if(!empty($apianswer)) {
 			$json = json_decode($apianswer,true);
 			if(isset($json['error'])) {
-				if($json['error'] === false) {
+				if(isset($json['data']['token'])) {
 					$token = $json['data']['token'];
 				}
 			}
@@ -47,9 +50,10 @@ function neatek_clicklogin_set_token($token = '') {
 	return (bool) true;
 }
 function neatek_clicklogin_get_domain() {
-	$home = home_url();
-	$ex = explode('/', $home);
-	return (string) str_replace('/','',$ex[2]);
+	// $home = home_url();
+	// $ex = explode('/', $home);
+	// return (string) str_replace('/','',$ex[2]);
+	return site_url( '/', 'https' );
 }
 function neatek_clicklogin_token() {
 	$token = get_option( 'click_login_token', '' );
