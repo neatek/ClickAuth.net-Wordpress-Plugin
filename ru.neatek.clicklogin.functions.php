@@ -269,21 +269,23 @@ function neatek_clicklogin_plugins_to_root($path) {
 }
 function neatek_clicklogin_delete() {
 	// we respect cleanliness
-	$path = dirname( __FILE__ ).'/ru.neatek.clicklogin.auth.php';
-	if(file_exists(neatek_clicklogin_plugins_to_root($path))) {
-		unlink(neatek_clicklogin_plugins_to_root($path));
+	$path = $_SERVER['DOCUMENT_ROOT'].'/ru.neatek.clicklogin.auth.php';
+	if(file_exists($path)) {
+		unlink($path);
 	}
-	$path = dirname( __FILE__ ).'/ru.neatek.clicklogin.callback.php';
-	if(file_exists(neatek_clicklogin_plugins_to_root($path))) {
-		unlink(neatek_clicklogin_plugins_to_root($path));
+	$path = $_SERVER['DOCUMENT_ROOT'].'/ru.neatek.clicklogin.callback.php';
+	if(file_exists($path)) {
+		unlink($path);
 	}
 }
 function neatek_clicklogin_copy() {
 	// some users have PHP restriction in plugins folder, try to avoid it
 	$path = dirname( __FILE__ ).'/ru.neatek.clicklogin.auth.php';
-	copy($path, neatek_clicklogin_plugins_to_root($path));
+	// neatek_clicklogin_plugins_to_root($path)
+	copy($path, $_SERVER['DOCUMENT_ROOT'].'/ru.neatek.clicklogin.auth.php');
+
 	$path = dirname( __FILE__ ).'/ru.neatek.clicklogin.callback.php';
-	copy($path, neatek_clicklogin_plugins_to_root($path));
+	copy($path, $_SERVER['DOCUMENT_ROOT'].'/ru.neatek.clicklogin.callback.php');
 }
 function neatek_clicklogin_get_fb_link() {
 	if(neatek_clicklogin_fb_enabled())
