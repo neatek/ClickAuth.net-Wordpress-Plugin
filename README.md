@@ -1,10 +1,7 @@
-# ClickLogin Wordpress Plugin Social Autentification
+# ClickAuth.net
+### Wordpress Plugin for Social Authentication
 
-Lastest version:
+Plugin ClickAuth that allows you to enter through social networks for WordPress. To install, go to the "Plugins" section of your site and write "ClickLogin" in the search, then click install, go to settings.
 
-Введите в поиск «Clicklogin» в разделе «Плагины» своего сайта и установите! Далее, активируйте. Сайт должен быть доступен для пользователей, и использовать https.
-
-Search for "Clicklogin" in the "Plugins" section of your site and install it! Next, activate. The site must be accessible to users, and use https.
-
-1. https://clicklogin.ru/
+1. https://clickauth.net/
 2. https://wordpress.org/plugins/click-login-one-click-auth/
